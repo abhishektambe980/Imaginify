@@ -20,10 +20,10 @@ The project relies on the following environment variables, which are defined in 
 - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Public API key for Clerk.
 - `CLERK_SECRET_KEY`: Secret API key for Clerk.
 - `WEBHOOK_SECRET`: Webhook secret for Clerk.
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+- NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+- NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+- NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+- NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
 ### Cloudinary
 - `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`: Cloud name for Cloudinary.
