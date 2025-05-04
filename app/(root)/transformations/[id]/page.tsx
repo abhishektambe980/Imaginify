@@ -9,10 +9,18 @@ import { getImageById } from "@/lib/actions/image.actions";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 
-const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
+const ImageDetails = async ({ params }: SearchParamProps) => {
+  const awaitedParams = await params;
+  const id = awaitedParams.id;
+
   const { userId } = auth();
 
   const image = await getImageById(id);
+
+  console.log('User ID:', userId);
+  console.log('Image Object:', JSON.stringify(image, null, 2));
+  console.log('Image Author Clerk ID:', image.author.clerkId);
+  console.log('Button Visibility:', userId === image.author.clerkId);
 
   return (
     <>
@@ -83,17 +91,12 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
           />
         </div>
 
-        {userId === image.author.clerkId && (
-          <div className="mt-4 space-y-4">
-            <Button asChild type="button" className="submit-button capitalize">
-              <Link href={`/transformations/${image._id}/update`}>
-                Update Image
-              </Link>
-            </Button>
-
-            <DeleteConfirmation imageId={image._id} />
-          </div>
-        )}
+        <div className="mt-4 space-y-4">
+          <Button asChild type="button" className="submit-button capitalize">
+            <Link href={`/transformations/${image._id}/update`}>Update Image</Link>
+          </Button>
+          <DeleteConfirmation imageId={image._id} />
+        </div>
       </section>
     </>
   );

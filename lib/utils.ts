@@ -155,3 +155,11 @@ export const deepMergeObjects = (obj1: any, obj2: any) => {
 
   return output;
 };
+
+// LOAD RAZORPAY SDK
+export const loadRazorpay = () => {
+  const script = document.createElement('script');
+  script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+  script.async = true;
+  document.body.appendChild(script);
+};

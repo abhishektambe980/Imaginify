@@ -1,8 +1,8 @@
 import Header from '@/components/shared/Header'
 import TransformationForm from '@/components/shared/TransformationForm';
 import { transformationTypes } from '@/constants'
-import { getUserById } from '@/lib/actions/user.actions';
-import { auth } from '@clerk/nextjs';
+import { getUserById, createUser } from '@/lib/actions/user.actions';
+import { auth, currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
@@ -11,7 +11,23 @@ const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps)
 
   if(!userId) redirect('/sign-in')
 
-  const user = await getUserById(userId);
+  let user = await getUserById(userId);
+
+  if (!user) {
+    // If user doesn't exist in MongoDB, create them with Clerk data
+    const clerkUser = await currentUser();
+    
+    user = await createUser({
+      clerkId: userId,
+      email: clerkUser?.emailAddresses[0]?.emailAddress || "",
+      username: clerkUser?.username || "",
+      photo: clerkUser?.imageUrl || "",
+      firstName: clerkUser?.firstName || "",
+      lastName: clerkUser?.lastName || "",
+      planId: 1,
+      creditBalance: 10
+    });
+  }
 
   return (
     <>
