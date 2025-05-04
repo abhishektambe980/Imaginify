@@ -1,7 +1,7 @@
 # Imaginify
 
 Imaginify is a web application designed to streamline and enhance your creative workflows. It integrates various services like MongoDB, Clerk, Cloudinary, and Razorpay to provide a seamless user experience for authentication, media management, and payment processing.
-![Homepage Screenshot](Homepage.png)
+![Homepage Screenshot]
 ## Features
 
 - **User Authentication**: Powered by Clerk for secure sign-in and sign-up flows.
